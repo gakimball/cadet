@@ -1,1 +1,16 @@
-/* CSS declarations go here */
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  -webkit-user-select: none;
+}
+
+.button {
+  display: inline-block;
+  background: #ccc;
+  color: black;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+  .button:hover {
+    background: #ddd;
+    color: black;
+  }

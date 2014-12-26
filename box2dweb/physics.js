@@ -14,7 +14,7 @@ Physics = function(canvasId) {
   this.world = new b2World(gravity, true);
   this.element = document.getElementById(canvasId);
   this.context = this.element.getContext('2d');
-  this.scale = 30;
+  this.scale = 20;
   this.dtRemaining = 0;
   this.stepAmount = 1/60;
 }

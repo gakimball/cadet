@@ -6,8 +6,16 @@
   <h1>Cadet</h1>
 
   {{> canvas}}
+  {{> controls}}
 </body>
 
 <template name="canvas">
-  <canvas id="canvas"></canvas>
+  <canvas id="canvas" width="400" height="300"></canvas>
+</template>
+
+<template name="controls">
+  <a data-dir="up" class="button">Up</a>
+  <a data-dir="right" class="button">Right</a>
+  <a data-dir="down" class="button">Down</a>
+  <a data-dir="left" class="button">Left</a>
 </template>
