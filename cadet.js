@@ -21,16 +21,21 @@ var walls = function(game, width, height) {
 }
 
 if (Meteor.isClient) {
-  var game, ship;
+  var game, canvas, ship;
 
   Meteor.startup(function() {
-    game = Game('canvas', false);
+    game = new Game('canvas', false);
+    canvas = document.getElementById('canvas');
+
+    window.setInterval(function() {
+      game.draw(canvas);
+    }, 1000 / 60);
 
     ship = new Body(game, {
       color: 'blue', x: 5, y: 5, height: 1, width: 1
     }).body;
 
-    walls(game, game.element.width / game.scale, game.element.height / game.scale);
+    walls(game, canvas.width / game.scale, canvas.height / game.scale);
   });
 
   var moveShip = function(dir) {

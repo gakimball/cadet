@@ -1,16 +1,25 @@
 Game = function(canvasId, debug) {
-  var physics, lastFrame = new Date().getTime();
-  var gameLoop = function() {
-    var time = new Date().getTime();
-    requestAnimationFrame(gameLoop);
-    var drawTime = (time - lastFrame) / 1000;
-    if(drawTime > 1/15) { drawTime = 1/15; }
-    physics.step(drawTime);
-    lastFrame = time;
-  }
+  var physics;
+  var fps = 60;
 
-  var physics = new Physics(canvasId);
-  if (debug) physics.debug();
-  requestAnimationFrame(gameLoop);
+  var run = (function() {
+    var loops = 0
+    var skipTicks = 1000 / fps;
+    var maxFrameSkip = 10;
+    var nextGameTick = new Date().getTime();
+
+    return function() {
+      loops = 0;
+      
+      while ((new Date).getTime() > nextGameTick && loops < maxFrameSkip) {
+        physics.world.Step(1/fps, 8, 3)
+        nextGameTick += skipTicks;
+        loops++;
+      }
+    }
+  })();
+
+  physics = new Physics();
+  window.setInterval(run, 0);
   return physics;
 }
