@@ -1,7 +1,7 @@
 var walls = function(game, width, height) {
   var draw = function(x, y) {
     new Body(game, {
-      type: 'static', x: x + 0.5, y: y + 0.5, width: 1, height: 1
+      type: 'static', color: 'black', x: x + 0.5, y: y + 0.5, width: 1, height: 1
     });
   }
 
@@ -24,10 +24,10 @@ if (Meteor.isClient) {
   var game, ship;
 
   Meteor.startup(function() {
-    game = Game('canvas', true);
+    game = Game('canvas', false);
 
     ship = new Body(game, {
-      x: 5, y: 5, height: 1, width: 1
+      color: 'blue', x: 5, y: 5, height: 1, width: 1
     }).body;
 
     walls(game, game.element.width / game.scale, game.element.height / game.scale);
