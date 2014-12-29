@@ -1,9 +1,9 @@
 Meteor.methods({
   draw: function(bodies) {
     var context = canvas.getContext('2d');
-    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     context.save();
-    context.scale(canvasScale, canvasScale);
+    context.scale(CANVAS_SCALE, CANVAS_SCALE);
 
     for (var i = 0; i < bodies.length; i++) {
       var body = bodies[i];
@@ -39,9 +39,13 @@ Meteor.methods({
       }
 
       if (body.image) {
-        context.drawImage(this.details.image, -this.details.width / 2, -this.details.height / 2,
-        this.details.width,
-        this.details.height);
+        context.drawImage(
+          this.details.image,
+          -this.details.width / 2,
+          -this.details.height / 2,
+          this.details.width,
+          this.details.height
+        );
       }
 
       context.restore();
