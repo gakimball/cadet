@@ -1,4 +1,26 @@
 Meteor.methods({
+  createMap: function(width, height) {
+    var addWall = function(x, y) {
+      new Body(game, 'wall'+x+'x'+y, {
+        type: 'static', color: 'black', x: x + 0.5, y: y + 0.5, width: 1, height: 1
+      });
+    }
+
+    for (var w = 0; w < width; w++) {
+      for (var h = 0; h < height; h++) {
+        // First or last row
+        if (h === 0 || h === height - 1) {
+          addWall(w, h);
+        }
+        // Middle rows
+        else {
+          if (w === 0 || w === width - 1) {
+            addWall(w, h);
+          }
+        }
+      }
+    }
+  },
   updateBodies: function() {
     var bodies = [];
     var obj = game.world.GetBodyList();
@@ -16,12 +38,23 @@ Meteor.methods({
           color: body.details.color || 'black',
           image: body.details.image || null
         }
-        // Bodies.update(id, {$set: bodyInfo}, {upsert: true});
         bodies.push(bodyInfo);
       }
       obj = obj.GetNext();
     }
     Bodies.update('bodies', {$set: {id: 0, bodies: bodies}}, {upsert: true});
+  },
+  updateShipInfo: function() {
+    var velocity = ship.GetLinearVelocity();
+    var angle    = ship.GetAngle();
+    var data     = {
+      id: 1,
+      x: velocity.x.toFixed(2),
+      y: velocity.y.toFixed(2),
+      angle: angle.toFixed(0)
+    }
+
+    Bodies.update('shipInfo', {$set: data}, {upsert: true});
   },
   moveShip: function(dir) {
     var speed = 1;

@@ -25,5 +25,10 @@
     <a data-dir="right" class="button">Right</a>
     <a data-dir="down" class="button">Down</a>
     <a data-dir="left" class="button">Left</a>
+    <br>
+    {{#with shipinfo}}
+      <p><strong>Speed:</strong> {{x}} / {{y}}</p>
+      <p><strong>Rotation:</strong> {{angle}}&deg;</p>
+    {{/with}}
   </div>
 </template>
