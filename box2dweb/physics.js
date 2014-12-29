@@ -14,7 +14,7 @@ Physics = function(canvasId) {
   this.world = new b2World(gravity, true);
   this.scale = 20;
   this.dtRemaining = 0;
-  this.stepAmount = 1/60;
+  this.stepAmount = 1/30;
 }
 
 Physics.prototype = {
@@ -24,23 +24,5 @@ Physics.prototype = {
       this.dtRemaining -= this.stepAmount;
       this.world.Step(this.stepAmount, 8, 3);
     }
-  },
-  draw: function(canvas) {
-    var context = canvas.getContext('2d');
-    var obj = this.world.GetBodyList();
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.save();
-    context.scale(this.scale, this.scale);
-
-    while (obj) {
-      var body = obj.GetUserData();
-      if (body) {
-        body.draw(context);
-      }
-      obj = obj.GetNext();
-    }
-
-    context.restore();
   }
 }
