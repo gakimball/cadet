@@ -9,8 +9,11 @@ var b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape;
 var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 
-Body = function (physics, details) {
-this.details = details = details || {};
+Body = function (physics, name, details) {
+  this.details = details = details || {};
+
+  // Assign ID
+  this.id = new Mongo.ObjectID();
 
   // Create the definition
   this.definition = new b2BodyDef();
@@ -32,7 +35,6 @@ this.details = details = details || {};
   for (var l in this.fixtureDefaults) {
     this.fixtureDef[l] = details[l] || this.fixtureDefaults[l];
   }
-
 
   details.shape = details.shape || this.defaults.shape;
 

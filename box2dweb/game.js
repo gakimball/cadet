@@ -16,10 +16,12 @@ Game = function(canvasId, debug) {
         nextGameTick += skipTicks;
         loops++;
       }
+
+      Meteor.call('updateBodies');
     }
   })();
 
   physics = new Physics();
-  window.setInterval(run, 0);
+  Meteor.setInterval(run, 0);
   return physics;
 }
