@@ -7,7 +7,7 @@ Meteor.startup(function() {
       Meteor.call('draw', Bodies.findOne({id: 0}).bodies);
     }
     catch (e) {}
-  }, 1000 / 30);
+  }, 1000 / GAME_FRAMERATE);
 });
 
 Template.navigationControls.helpers({
@@ -23,7 +23,7 @@ Template.navigationControls.events({
     Meteor.call('moveShip', direction);
     thrustInterval = window.setInterval(function() {
       Meteor.call('moveShip', direction);
-    }, 1000);
+    }, SHIP_THRUST_FREQ);
   },
   'mouseup [data-dir]': function(event) {
     window.clearInterval(thrustInterval);

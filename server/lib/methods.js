@@ -45,8 +45,8 @@ Meteor.methods({
     Bodies.update('bodies', {$set: {id: 0, bodies: bodies}}, {upsert: true});
   },
   updateShipInfo: function() {
-    var velocity = ship.GetLinearVelocity();
-    var angle    = ship.GetAngle();
+    var velocity = ship.body.GetLinearVelocity();
+    var angle    = ship.body.GetAngle();
     var data     = {
       id: 1,
       x: velocity.x.toFixed(2),
@@ -57,13 +57,6 @@ Meteor.methods({
     Bodies.update('shipInfo', {$set: data}, {upsert: true});
   },
   moveShip: function(dir) {
-    var speed = 1;
-    var impulses = {
-      'up':    {x: 0, y: -speed},
-      'down':  {x: 0, y: speed},
-      'left':  {x: -speed, y: 0},
-      'right': {x: speed, y: 0}
-    }
-    ship.ApplyImpulse(impulses[dir], ship.GetWorldCenter());
+    ship.thrust(dir);
   }
 });
