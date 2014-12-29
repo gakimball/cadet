@@ -60,7 +60,7 @@ Meteor.startup(function() {
   }, 1000 / 30);
 });
 
-Template.controls.events({
+Template.navigationControls.events({
   'click [data-dir]': function(event) {
     Meteor.call('moveShip', event.target.getAttribute('data-dir'));
   }

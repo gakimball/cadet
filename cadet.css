@@ -5,17 +5,30 @@ body {
 
 .button {
   display: inline-block;
-  background: #ccc;
-  color: black;
+  background: #828dff;
+  color: white;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  font-weight: normal;
+  border-radius: 6px;
 }
   .button:hover {
-    background: #ddd;
-    color: black;
+    background: #a6b7ff;
+    color: white;
+  }
+
+.controls {
+  float: left;
+  margin-left: 1rem;
+}
+  .controls__item {
+    margin-bottom: 1rem;
+    background: #eee;
+    padding: 1rem;
   }
 
 #canvas {
+  float: left;
   image-rendering: optimizeSpeed;             /* Older versions of FF */
   image-rendering: -moz-crisp-edges;          /* FF 6.0+ */
   image-rendering: -webkit-optimize-contrast; /* Safari */
