@@ -4,7 +4,9 @@ var draw = function(canvas, bodies) {
   context.save();
   context.scale(canvasScale, canvasScale);
 
-  bodies.forEach(function(body) {
+  for (var i = 0; i < bodies.length; i++) {
+    var body = bodies[i];
+
     context.save();
     context.translate(body.x, body.y);
     context.rotate(body.angle);
@@ -42,7 +44,7 @@ var draw = function(canvas, bodies) {
     }
 
     context.restore();
-  });
+  };
 
   context.restore();
 }
@@ -51,8 +53,8 @@ Meteor.startup(function() {
   canvas = document.getElementById('canvas');
 
   window.setInterval(function() {
-    draw(canvas, Bodies.find({}));
-  }, 1000 / 60);
+    draw(canvas, Bodies.findOne({id: 0}).bodies);
+  }, 1000 / 30);
 });
 
 Template.controls.events({

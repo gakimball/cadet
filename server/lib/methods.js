@@ -1,5 +1,6 @@
 Meteor.methods({
   updateBodies: function() {
+    var bodies = [];
     var obj = game.world.GetBodyList();
     while (obj) {
       var body = obj.GetUserData();
@@ -15,10 +16,12 @@ Meteor.methods({
           color: body.details.color || 'black',
           image: body.details.image || null
         }
-        Bodies.update(id, {$set: bodyInfo}, {upsert: true});
+        // Bodies.update(id, {$set: bodyInfo}, {upsert: true});
+        bodies.push(bodyInfo);
       }
       obj = obj.GetNext();
     }
+    Bodies.update('bodies', {$set: {id: 0, bodies: bodies}}, {upsert: true});
   },
   moveShip: function(dir) {
     var speed = 1;
