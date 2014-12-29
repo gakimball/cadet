@@ -1,7 +1,3 @@
-var canvasWidth = 400;
-var canvasHeight = 300;
-var canvasScale = 20;
-
 var walls = function(game, width, height) {
   var addWall = function(x, y) {
     new Body(game, 'wall'+x+'x'+y, {
