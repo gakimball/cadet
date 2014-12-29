@@ -53,7 +53,10 @@ Meteor.startup(function() {
   canvas = document.getElementById('canvas');
 
   window.setInterval(function() {
-    draw(canvas, Bodies.findOne({id: 0}).bodies);
+    try {
+      draw(canvas, Bodies.findOne({id: 0}).bodies);
+    }
+    catch (e) {}
   }, 1000 / 30);
 });
 
