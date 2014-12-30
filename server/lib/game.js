@@ -3,6 +3,7 @@ Game = function(canvasId, debug) {
 
   var run = function() {
     physics.world.Step(1/GAME_FRAMERATE, 8, 3);
+    physics.destroy();
     Meteor.call('updateBodies');
     Meteor.call('updateShipInfo');
   };

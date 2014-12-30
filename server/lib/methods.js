@@ -1,7 +1,7 @@
 Meteor.methods({
   createMap: function(width, height) {
     var addWall = function(x, y) {
-      new Body(game, 'wall'+x+'x'+y, {
+      new Body(game, 'wall', {
         type: 'static', color: 'black', x: x + 0.5, y: y + 0.5, width: 1, height: 1
       });
     }
@@ -58,5 +58,20 @@ Meteor.methods({
   },
   moveShip: function(dir) {
     ship.thrust(dir);
+  },
+  fire: function(dir) {
+    var speed = SHIP_BULLET_SPEED;
+    var shipCenter = ship.body.GetWorldCenter();
+    var impulses = {
+      'up':    {x: 0, y: -speed},
+      'down':  {x: 0, y: speed},
+      'left':  {x: -speed, y: 0},
+      'right': {x: speed, y: 0}
+    }
+
+    var bullet = new Body(game, 'bullet', {
+      bullet: true, color: 'green', x: shipCenter.x, y: shipCenter.y, width: 0.5, height: 0.5
+    }).body;
+    bullet.ApplyImpulse(impulses[dir], bullet.GetWorldCenter());
   }
 });

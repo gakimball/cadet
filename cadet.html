@@ -16,6 +16,7 @@
 <template name="controls">
   <div class="controls">
     {{> navigationControls}}
+    {{> weaponsControls}}
   </div>
 </template>
 
@@ -30,5 +31,14 @@
       <p><strong>Speed:</strong> {{x}} / {{y}}</p>
       <p><strong>Rotation:</strong> {{angle}}&deg;</p>
     {{/with}}
+  </div>
+</template>
+
+<template name="weaponsControls">
+  <div class="controls__item">
+    <a data-fire="up" class="button">Up</a>
+    <a data-fire="right" class="button">Right</a>
+    <a data-fire="down" class="button">Down</a>
+    <a data-fire="left" class="button">Left</a>
   </div>
 </template>

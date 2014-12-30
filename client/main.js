@@ -29,3 +29,10 @@ Template.navigationControls.events({
     window.clearInterval(thrustInterval);
   }
 });
+
+Template.weaponsControls.events({
+  'click [data-fire]': function(event) {
+    var direction = event.target.getAttribute('data-fire');
+    Meteor.call('fire', direction);
+  }
+});
