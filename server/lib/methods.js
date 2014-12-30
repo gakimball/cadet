@@ -70,7 +70,7 @@ Meteor.methods({
     }
 
     var bullet = new Body(game, 'bullet', {
-      bullet: true, color: 'green', x: shipCenter.x, y: shipCenter.y, width: 0.5, height: 0.5
+      bullet: true, color: 'green', x: shipCenter.x, y: shipCenter.y, width: 0.5, height: 0.5, index: -1
     }).body;
     bullet.ApplyImpulse(impulses[dir], bullet.GetWorldCenter());
   }

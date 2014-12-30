@@ -1,6 +1,6 @@
 Ship = function(x, y) {
   this.body = new Body(game, 'ship', {
-    color: 'blue', x: x || 5, y: y || 5, height: 1, width: 1
+    color: 'blue', x: x || 5, y: y || 5, height: 1, width: 1, index: -1
   }).body;
 }
 
