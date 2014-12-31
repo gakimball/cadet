@@ -15,20 +15,32 @@
 
 <template name="controls">
   <div class="controls">
+    {{> shipStatus}}
     {{> navigationControls}}
     {{> weaponsControls}}
   </div>
 </template>
 
+<template name="shipStatus">
+  <div class="controls__item">
+    {{#with shipinfo}}
+      <h3 class="controls__item__title">Status</h3>
+      <p><strong>Health:</strong> {{health}}</p>
+      <p><strong>Fuel:</strong> {{fuel}}</p>
+    {{/with}}
+  </div>
+</template>
+
 <template name="navigationControls">
   <div class="controls__item">
+    <h3 class="controls__item__title">Navigation</h3>
     <a data-dir="up" class="button">Up</a>
     <a data-dir="right" class="button">Right</a>
     <a data-dir="down" class="button">Down</a>
     <a data-dir="left" class="button">Left</a>
     <br>
     {{#with shipinfo}}
-      <p><strong>Speed:</strong> {{x}} / {{y}}</p>
+      <p><strong>Speed:</strong> {{speed}}</p>
       <p><strong>Rotation:</strong> {{angle}}&deg;</p>
     {{/with}}
   </div>
@@ -36,6 +48,7 @@
 
 <template name="weaponsControls">
   <div class="controls__item">
+    <h3 class="controls__item__title">Weapons</h3>
     <a data-fire="up" class="button">Up</a>
     <a data-fire="right" class="button">Right</a>
     <a data-fire="down" class="button">Down</a>

@@ -16,6 +16,12 @@ Template.navigationControls.helpers({
   }
 });
 
+Template.shipStatus.helpers({
+  shipinfo: function() {
+    return Bodies.findOne({id: 1});
+  }
+});
+
 Template.navigationControls.events({
   'mousedown [data-dir]': function(event) {
     var direction = event.target.getAttribute('data-dir');

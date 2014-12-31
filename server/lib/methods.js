@@ -49,17 +49,23 @@ Meteor.methods({
     var angle    = ship.body.GetAngle();
     var data     = {
       id: 1,
-      x: velocity.x.toFixed(2),
-      y: velocity.y.toFixed(2),
+      health: ship.health,
+      fuel: ship.fuel,
+      speed: velocity.Length().toFixed(2),
       angle: angle.toFixed(0)
     }
 
     Bodies.update('shipInfo', {$set: data}, {upsert: true});
   },
   moveShip: function(dir) {
-    ship.thrust(dir);
+    if (ship.fuel > 0) {
+      ship.thrust(dir);
+    }
   },
   fire: function(dir) {
+    if (ship.fuel === 0) return;
+
+    ship.fuel--;
     var speed = SHIP_BULLET_SPEED;
     var shipCenter = ship.body.GetWorldCenter();
     var impulses = {
