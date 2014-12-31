@@ -42,3 +42,12 @@ Template.weaponsControls.events({
     Meteor.call('fire', direction);
   }
 });
+
+Template.engineeringControls.helpers({
+  usage: function() {
+    return 100;
+  },
+  controls: function() {
+    return ['thrusters', 'weapons', 'shields'];
+  }
+});

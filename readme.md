@@ -12,7 +12,7 @@ I'm trying to a multiplayer spaceship-piloting thing with Meteor (to handle clie
 - [x] Input are passed from client to server
 - [x] Objects are passed from server to client and drawn
 - [x] Ship can shoot in four directions
-- [ ] Ship takes damage from collision
+- [x] Ship takes damage from collision
 - [ ] Enemies that shoot
 - [ ] Engineering console
 - [ ] Multiple weapon types

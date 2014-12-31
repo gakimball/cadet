@@ -32,6 +32,6 @@ Ship.prototype = {
     }
   },
   die: function() {
-
+    
   }
 }
