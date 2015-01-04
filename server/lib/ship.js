@@ -4,11 +4,16 @@ Ship = function(x, y) {
   }).body;
   this.health = SHIP_MAX_HEALTH;
   this.fuel   = SHIP_MAX_FUEL;
+  this.systems = {
+    thrusters: 3,
+    shields: 3,
+    weapons: 3
+  }
 }
 
 Ship.prototype = {
   thrust: function(dir) {
-    var speed = SHIP_THRUST_SPEED;
+    var speed = SHIP_THRUST_SPEED * (this.systems.thrusters / 3);
     var impulses = {
       'up':    {x: 0, y: -speed},
       'down':  {x: 0, y: speed},

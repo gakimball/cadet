@@ -51,3 +51,9 @@ Template.engineeringControls.helpers({
     return ['thrusters', 'weapons', 'shields'];
   }
 });
+
+Template.engineeringControls.events({
+  'click [data-control]': function() {
+    Meteor.call('setEngineeringControl', event.target.getAttribute('data-control'), event.target.value);
+  }
+})
